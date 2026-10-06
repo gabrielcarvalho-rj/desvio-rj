@@ -1,0 +1,72 @@
+# ============================================================
+# Desvio RJ - Docker Compose
+# Sobe tres servicos: postgres (banco), backend (API) e frontend (site).
+# Comando unico:  docker compose up --build
+# ============================================================
+services:
+
+  # ---------- Banco de dados ----------
+  postgres:
+    image: postgres:16
+    container_name: desvio-rj-postgres
+    environment:
+      POSTGRES_DB: desvio_rj
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      # Persistencia dos dados
+      - pgdata:/var/lib/postgresql/data
+      # Carga inicial: executada SOMENTE quando o volume esta vazio (primeira subida)
+      - ./database/desvio_rj.sql:/docker-entrypoint-initdb.d/desvio_rj.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d desvio_rj -h localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    restart: unless-stopped
+
+  # ---------- API REST (Spring Boot) ----------
+  backend:
+    build:
+      context: ./backend
+    container_name: desvio-rj-backend
+    depends_on:
+      postgres:
+        condition: service_healthy   # so inicia depois que o banco estiver pronto
+    environment:
+      # Dentro da rede do Docker o banco e acessado pelo nome do servico ("postgres")
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/desvio_rj
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      # Apenas reduz o volume de logs no terminal (nao altera o comportamento)
+      SPRING_JPA_SHOW_SQL: "false"
+    ports:
+      - "8080:8080"
+    healthcheck:
+      # Verifica se a porta 8080 aceita conexoes (a imagem nao tem curl)
+      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/localhost/8080'"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 40s
+    restart: unless-stopped
+
+  # ---------- Site (React + Nginx) ----------
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Endereco da API visto pelo NAVEGADOR (nao pelo container)
+        VITE_API_URL: http://localhost:8080
+    container_name: desvio-rj-frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

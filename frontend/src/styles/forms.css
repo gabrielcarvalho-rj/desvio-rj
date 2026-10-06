@@ -1,0 +1,131 @@
+/* ===== Formulários ===== */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo > span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--floresta);
+}
+
+.campo small {
+    font-size: 0.825rem;
+    color: var(--texto-suave);
+}
+
+.campo input,
+.campo select,
+.campo textarea,
+.admin-lista input {
+    width: 100%;
+    padding: 11px 14px;
+    font: inherit;
+    color: var(--texto);
+    background: var(--campo-fundo);
+    border: 1.5px solid var(--linha);
+    border-radius: var(--raio-m);
+    transition: border-color 0.15s ease;
+}
+
+.campo textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.campo input:hover,
+.campo select:hover,
+.campo textarea:hover {
+    border-color: var(--campo-borda-hover);
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus,
+.admin-lista input:focus {
+    outline: none;
+    border-color: var(--floresta);
+    box-shadow: 0 0 0 3px rgba(228, 87, 46, 0.25);
+}
+
+.campo input:disabled {
+    background: var(--areia);
+    color: var(--texto-suave);
+}
+
+.campo-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.campo-check input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--floresta);
+}
+
+.aviso-erro {
+    padding: 10px 14px;
+    font-size: 0.925rem;
+    color: var(--erro-texto);
+    background: var(--erro-fundo);
+    border-radius: var(--raio-m);
+}
+
+.formulario-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* ===== Login / cadastro / novo roteiro ===== */
+.auth-pagina {
+    display: grid;
+    place-items: start center;
+    padding: 56px 20px 80px;
+}
+
+.auth-cartao {
+    width: min(440px, 100%);
+    padding: 36px;
+    background: var(--marfim);
+    border: 1px solid var(--linha);
+    border-radius: var(--raio-g);
+    box-shadow: var(--sombra-m);
+}
+
+.auth-cartao-largo {
+    width: min(620px, 100%);
+}
+
+.auth-cartao h1 {
+    font-size: 2rem;
+    margin-bottom: 6px;
+}
+
+.auth-cartao .formulario {
+    margin-top: 24px;
+}
+
+.auth-rodape {
+    margin-top: 22px;
+    font-size: 0.925rem;
+    color: var(--texto-suave);
+}
+
+@media (max-width: 480px) {
+    .auth-cartao {
+        padding: 24px 20px;
+    }
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Desvio RJ: descubra lugares, salve favoritos e monte roteiros pelo Rio de Janeiro." />
+    <meta name="theme-color" content="#0E1D18" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Desvio RJ</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Aplica o tema salvo antes do React carregar, para a tela não "piscar" clara.
+         A mesma regra está em src/context/ThemeProvider.jsx (que continua sendo a fonte da verdade). -->
+    <script>
+      try {
+        var tema = localStorage.getItem("desvioRJ.tema");
+        var escuro = tema ? tema === "escuro" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.body.classList.toggle("tema-escuro", escuro);
+      } catch (e) {}
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
