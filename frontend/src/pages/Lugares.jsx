@@ -29,7 +29,7 @@ function Lugares() {
     const [categoriaId, setCategoriaId] = useState(location.state?.categoriaId || "");
     const [soGratuitos, setSoGratuitos] = useState(false);
 
-    // useMemo (Aula 03): só refaz o filtro quando a lista ou algum filtro mudar.
+    // Recalcula a lista filtrada quando os dados ou filtros mudam.
     const filtrados = useMemo(() => {
         const termo = semAcento(busca.trim());
 

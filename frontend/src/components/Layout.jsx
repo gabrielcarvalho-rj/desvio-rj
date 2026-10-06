@@ -4,9 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
-// Layout compartilhado (Aula 05): a "moldura" fixa de todas as páginas.
-// Navbar e Footer ficam aqui uma única vez; o <Outlet /> é o espaço
-// reservado onde o React Router insere a página da rota filha atual.
+// Layout compartilhado: Navbar e Footer ficam fixos, e o Outlet renderiza a rota filha.
 function Layout() {
     const { pathname } = useLocation();
 
@@ -23,7 +21,7 @@ function Layout() {
 
             <Navbar />
 
-            {/* Único <main> da aplicação: as páginas renderizam apenas o seu conteúdo. */}
+            {/* Conteúdo da rota atual */}
             <main id="conteudo" className="app-conteudo">
                 <Outlet />
             </main>

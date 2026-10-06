@@ -2,11 +2,8 @@ import { Link, Navigate, Outlet } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
 
-// PrivateRoute (Aula 07): decide se as rotas filhas aparecem ou não.
-// Fica como rota "sem path" e devolve <Outlet /> quando a pessoa pode entrar.
-//   <Route element={<RotaPrivada />}>             exige login
-//   <Route element={<RotaPrivada somenteAdmin />}> exige login + role ADMIN
-// Protege só a experiência do usuário: a segurança de verdade está no servidor (Spring Security).
+// Controla o acesso às rotas autenticadas e, quando necessário, às rotas de administrador.
+// A validação de segurança também é feita no servidor.
 function RotaPrivada({ somenteAdmin = false }) {
     const { autenticado, isAdmin } = useAuth();
 

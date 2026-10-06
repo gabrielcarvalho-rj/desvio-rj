@@ -6,10 +6,6 @@ function paraTexto(valor) {
     return valor === null || valor === undefined ? "" : String(valor);
 }
 
-// useReducer (Aula 08): em vez de um useState com o objeto inteiro, todas as mudanças
-// possíveis do formulário ficam reunidas em uma função só (lugarFormReducer).
-// Os componentes não alteram o estado direto: pedem com dispatch({ tipo: "...", ... }).
-
 // Monta o estado inicial a partir do lugar (edição) ou vazio (novo).
 function criarEstadoInicial(lugar) {
     return {
@@ -33,7 +29,7 @@ function criarEstadoInicial(lugar) {
     };
 }
 
-// Recebe o estado atual e a ação; devolve o NOVO estado (sem alterar o antigo).
+// Centraliza as atualizações do formulário em um reducer.
 function lugarFormReducer(estado, acao) {
     switch (acao.tipo) {
         case "alterarCampo":
@@ -51,7 +47,6 @@ function lugarFormReducer(estado, acao) {
 // { nome, descricao, cidade, bairro, endereco, latitude, longitude, fotoUrl,
 //   gratuito, precoInicial, duracaoMinutos, dificuldade, siteExterno, categoriaId }
 function LugarForm({ lugar, categorias, aoSalvar, aoCancelar, salvando }) {
-    // O 3º argumento (criarEstadoInicial) roda uma única vez e recebe o 2º (lugar).
     const [estado, dispatch] = useReducer(lugarFormReducer, lugar, criarEstadoInicial);
     const { campos, erro } = estado;
 

@@ -16,11 +16,9 @@ function Login() {
     const [erro, setErro] = useState("");
     const [enviando, setEnviando] = useState(false);
 
-    // useRef (Aula 07): guarda o acesso direto ao <input> de e-mail no DOM.
-    // Mudar uma ref não provoca nova renderização (diferente de useState).
+    // Referência direta ao campo de e-mail para aplicar o foco inicial.
     const campoEmailRef = useRef(null);
 
-    // O foco é um efeito colateral: só pode ser chamado depois que o campo já está na tela.
     useEffect(() => {
         campoEmailRef.current?.focus();
     }, []);

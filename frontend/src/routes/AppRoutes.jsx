@@ -14,8 +14,7 @@ import RoteiroDetalhes from "../pages/RoteiroDetalhes";
 import Roteiros from "../pages/Roteiros";
 import RotaPrivada from "./RotaPrivada";
 
-// Carregamento sob demanda (Aula 07): o código destas três páginas só é baixado
-// quando o usuário entra nelas. As demais continuam importadas de forma estática.
+// Páginas carregadas sob demanda quando precisam ser renderizadas.
 const Favoritos = lazy(() => import("../pages/Favoritos"));
 const Perfil = lazy(() => import("../pages/Perfil"));
 const Admin = lazy(() => import("../pages/Admin"));
