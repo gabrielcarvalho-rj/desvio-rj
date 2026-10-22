@@ -1,3 +1,8 @@
+🚧 O Desvio RJ continua evoluindo!
+
+Este repositório preserva a versão acadêmica do projeto, apresentada em outubro de 2026. Desde então, comecei a desenvolver uma V2 independente e privada, com foco em melhorar a experiência do usuário, a arquitetura, os testes, a segurança, a descoberta de lugares e o planejamento de passeios. Meu objetivo é evoluir a ideia para uma plataforma mais completa e útil. A V2 ainda está em desenvolvimento e não é um produto lançado.
+
+
 # Desvio RJ
 
 **Aplicação web para descoberta de lugares e planejamento de passeios no Rio de Janeiro.**
