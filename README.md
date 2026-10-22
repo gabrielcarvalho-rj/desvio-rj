@@ -7,7 +7,7 @@ Este repositório preserva a versão acadêmica do projeto, apresentada em outub
 
 **Aplicação web para descoberta de lugares e planejamento de passeios no Rio de Janeiro.**
 
-Trabalho acadêmico individual — **Gabriel Carvalho da Costa Catramby** (matrícula **1260216595**).
+Trabalho acadêmico individual — **Gabriel Carvalho da Costa Catramby**.
 
 O Desvio RJ reúne em uma única aplicação a descoberta de lugares do Rio (além dos cartões-postais mais conhecidos), favoritos, dicas e a montagem de roteiros. Banco de dados, backend e frontend executam em contêineres Docker, orquestrados por Docker Compose.
 
